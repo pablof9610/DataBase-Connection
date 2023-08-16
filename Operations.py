@@ -29,7 +29,7 @@ class Operations:
         result = cursor.fetchall()
         result = result
         self.con.desconectar()
-        return str(result)[2:str(result).rfind("'")].strip()
+        return str(result)[3:str(result).rfind("'")].strip()
     
     def find_usremail_by_id(self, id):
         self.con.conectar()
@@ -39,7 +39,7 @@ class Operations:
         result = cursor.fetchall()
         result = result
         self.con.desconectar()
-        return str(result)[2:str(result).rfind("'")].strip()
+        return str(result)[3:str(result).rfind("'")].strip()
 
     #def authenticate(self):
     #    self.con.conectar()
