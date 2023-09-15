@@ -23,7 +23,7 @@ class Operations:
 
     def find_passwd_by_id(self, id):
         self.con.conectar()
-        query = f'SELECT senha FROM teste.pessoa WHERE id = {id}'
+        query = f'SELECT senha FROM teste.pessoa WHERE matricula = {id}'
         cursor = self.con.conn.cursor()
         cursor.execute(query)
         result = cursor.fetchall()
@@ -33,20 +33,30 @@ class Operations:
     
     def find_usremail_by_id(self, id):
         self.con.conectar()
-        query = f'SELECT email FROM teste.pessoa WHERE id = {id}'
+        query = f'SELECT email FROM teste.pessoa WHERE matricula = {id}'
         cursor = self.con.conn.cursor()
         cursor.execute(query)
         result = cursor.fetchall()
         result = result
         self.con.desconectar()
         return str(result)[3:str(result).rfind("'")].strip()
-
-    #def authenticate(self):
-    #    self.con.conectar()
-    #
-    #    query = 'SELECT senha FROM teste.pessoa'
-    #    cursor = self.con.conn.cursor()
-    #    cursor.execute(query)
-    #    result = cursor.fetchall()
-    #    cursor.close()
-    #    self.con.desconectar()
+    
+    def find_usremail_by_email(self, email):
+        self.con.conectar()
+        query = f"SELECT email FROM teste.pessoa WHERE email = '{email}'"
+        cursor = self.con.conn.cursor()
+        cursor.execute(query)
+        result = cursor.fetchall()
+        result = result
+        self.con.desconectar()
+        return str(result)[3:str(result).rfind("'")].strip()
+    
+    def find_passwd_by_email(self, email):
+        self.con.conectar()
+        query = f"SELECT senha FROM teste.pessoa WHERE email = '{email}'"
+        cursor = self.con.conn.cursor()
+        cursor.execute(query)
+        result = cursor.fetchall()
+        result = result
+        self.con.desconectar()
+        return str(result)[3:str(result).rfind("'")].strip()
